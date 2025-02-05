@@ -1,3 +1,28 @@
-[gd_scene format=3 uid="uid://bibaykwo7fkff"]
+[gd_scene load_steps=2 format=3 uid="uid://bibaykwo7fkff"]
+
+[ext_resource type="Texture2D" uid="uid://bjor88gdo71lc" path="res://icon.svg" id="1_vtaqs"]
 
 [node name="TestScene" type="Node2D"]
+
+[node name="GameManager" type="Node2D" parent="."]
+
+[node name="GameManagerFSM" type="Node" parent="GameManager"]
+
+[node name="PlayerHandler" type="Node" parent="GameManager"]
+
+[node name="InputHandler" type="Node" parent="GameManager"]
+
+[node name="GlobalMovementHandler" type="Node" parent="GameManager"]
+
+[node name="EnemyHandler" type="Node" parent="GameManager"]
+
+[node name="Director" type="Node" parent="GameManager/EnemyHandler"]
+
+[node name="WorldHandler" type="Node" parent="GameManager"]
+
+[node name="PlayerAircraft" type="Node2D" parent="."]
+
+[node name="PlayerFSM" type="Node" parent="PlayerAircraft"]
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerAircraft"]
+texture = ExtResource("1_vtaqs")
