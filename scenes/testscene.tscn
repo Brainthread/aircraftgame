@@ -1,21 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://bibaykwo7fkff"]
+[gd_scene load_steps=9 format=3 uid="uid://bibaykwo7fkff"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_tog4u"]
 [ext_resource type="Texture2D" uid="uid://bjor88gdo71lc" path="res://icon.svg" id="1_vtaqs"]
 [ext_resource type="Script" path="res://scripts/utilities/FiniteStateMachine.gd" id="2_uowoo"]
+[ext_resource type="Script" path="res://scripts/statemachines/GameManager/StartingState.gd" id="3_mf3pj"]
 [ext_resource type="Script" path="res://scripts/utilities/FiniteState.gd" id="3_p5axy"]
-[ext_resource type="Script" path="res://scripts/statemachines/GameWonState.gd" id="4_jxj2x"]
+[ext_resource type="Script" path="res://scripts/statemachines/GameManager/GameWonState.gd" id="4_jxj2x"]
+[ext_resource type="Script" path="res://scripts/PlayerAircraft.gd" id="6_tvbck"]
+[ext_resource type="Script" path="res://scripts/InputHandler.gd" id="8_plcel"]
 
 [node name="TestScene" type="Node2D"]
 
 [node name="GameManager" type="Node2D" parent="."]
 script = ExtResource("1_tog4u")
 
-[node name="GameManagerFSM" type="Node" parent="GameManager"]
+[node name="GameManagerFSM" type="Node" parent="GameManager" node_paths=PackedStringArray("current_state")]
 script = ExtResource("2_uowoo")
+current_state = NodePath("StartingState")
 
 [node name="StartingState" type="Node" parent="GameManager/GameManagerFSM"]
-script = ExtResource("3_p5axy")
+script = ExtResource("3_mf3pj")
 
 [node name="GameState" type="Node" parent="GameManager/GameManagerFSM"]
 script = ExtResource("3_p5axy")
@@ -29,6 +33,7 @@ script = ExtResource("4_jxj2x")
 [node name="PlayerHandler" type="Node" parent="GameManager"]
 
 [node name="PlayerAircraft" type="Node2D" parent="GameManager/PlayerHandler"]
+script = ExtResource("6_tvbck")
 
 [node name="PlayerFSM" type="Node" parent="GameManager/PlayerHandler/PlayerAircraft"]
 
@@ -36,6 +41,7 @@ script = ExtResource("4_jxj2x")
 texture = ExtResource("1_vtaqs")
 
 [node name="InputHandler" type="Node" parent="GameManager"]
+script = ExtResource("8_plcel")
 
 [node name="GlobalMovementHandler" type="Node" parent="GameManager"]
 

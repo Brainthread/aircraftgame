@@ -1,8 +1,6 @@
-extends Node
-class_name FiniteState
+extends FiniteState
+class_name StartingState
 
-var state_owner = null
-signal switch_state
 
 # Called when the node enters the scene tree for the first time.
 func _initialize(initializer):
@@ -11,6 +9,7 @@ func _initialize(initializer):
 
 func _on_enter():
 	print("Entered " + str(self))
+	switch_behaviour($"../GameState")
 	pass
 	
 func _on_exit():

@@ -1,7 +1,7 @@
 extends Node
 class_name FiniteStateMachine
 
-var current_state = null
+@export var current_state:FiniteState = null
 var states = []
 
 # Called when the node enters the scene tree for the first time.
@@ -15,7 +15,6 @@ func _ready() -> void:
 			states[i]._initialize(self)
 			states[i].switch_state.connect(_on_state_change)
 		i += 1
-		
 	if current_state == null:
 		current_state = states[0]
 		print(current_state)
@@ -31,7 +30,6 @@ func _physics_process(delta: float):
 		current_state._on_physics_update(delta)
 
 func _on_state_change(target_state):
-	print("Signal Received")
 	_change_state(target_state)
 
 
