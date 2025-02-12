@@ -2,10 +2,13 @@ extends Node
 class_name FiniteStateMachine
 
 @export var current_state:FiniteState = null
+@export var handler = null
 var states = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if handler == null:
+		handler = get_parent()
 	var children = get_children()
 	states.resize(len(children))
 	var i = 0

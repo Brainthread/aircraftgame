@@ -9,11 +9,12 @@ func _initialize(initializer):
 
 func _on_enter():
 	print("Entered " + str(self))
+	is_active = true
 	pass
 	
 func _on_exit():
+	is_active = false
 	pass
-	
 func _on_update(delta):
 	pass
 	

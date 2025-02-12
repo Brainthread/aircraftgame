@@ -2,6 +2,7 @@ extends Node
 class_name FiniteState
 
 var state_owner = null
+var is_active = false
 signal switch_state
 
 # Called when the node enters the scene tree for the first time.
@@ -11,9 +12,11 @@ func _initialize(initializer):
 
 func _on_enter():
 	print("Entered " + str(self))
+	is_active = true
 	pass
 	
 func _on_exit():
+	is_active = false
 	pass
 	
 func _on_update(delta):

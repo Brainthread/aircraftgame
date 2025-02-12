@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bibaykwo7fkff"]
+[gd_scene load_steps=11 format=3 uid="uid://bibaykwo7fkff"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_tog4u"]
 [ext_resource type="Texture2D" uid="uid://bjor88gdo71lc" path="res://icon.svg" id="1_vtaqs"]
@@ -7,7 +7,9 @@
 [ext_resource type="Script" path="res://scripts/utilities/FiniteState.gd" id="3_p5axy"]
 [ext_resource type="Script" path="res://scripts/statemachines/GameManager/GameWonState.gd" id="4_jxj2x"]
 [ext_resource type="Script" path="res://scripts/PlayerAircraft.gd" id="6_tvbck"]
+[ext_resource type="Script" path="res://scenes/AircraftActiveState.gd" id="7_deaho"]
 [ext_resource type="Script" path="res://scripts/InputHandler.gd" id="8_plcel"]
+[ext_resource type="Script" path="res://scenes/global_movement_handler.gd" id="9_080aa"]
 
 [node name="TestScene" type="Node2D"]
 
@@ -36,6 +38,10 @@ script = ExtResource("4_jxj2x")
 script = ExtResource("6_tvbck")
 
 [node name="PlayerFSM" type="Node" parent="GameManager/PlayerHandler/PlayerAircraft"]
+script = ExtResource("2_uowoo")
+
+[node name="Active" type="Node" parent="GameManager/PlayerHandler/PlayerAircraft/PlayerFSM"]
+script = ExtResource("7_deaho")
 
 [node name="Sprite2D" type="Sprite2D" parent="GameManager/PlayerHandler/PlayerAircraft"]
 texture = ExtResource("1_vtaqs")
@@ -44,9 +50,13 @@ texture = ExtResource("1_vtaqs")
 script = ExtResource("8_plcel")
 
 [node name="GlobalMovementHandler" type="Node" parent="GameManager"]
+script = ExtResource("9_080aa")
 
 [node name="EnemyHandler" type="Node" parent="GameManager"]
 
 [node name="Director" type="Node" parent="GameManager/EnemyHandler"]
 
 [node name="WorldHandler" type="Node" parent="GameManager"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.3, 0.3)
